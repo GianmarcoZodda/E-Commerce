@@ -4,11 +4,11 @@
     {
         public int Id { get; set; }
 
-        public int IdSucursal { get; set; }
+        public int SucursalId { get; set; }
 
         public Sucursal Sucursal { get; set; }
 
-        public int IdProducto { get; set; }
+        public int ProductoId { get; set; }
 
         public Producto Producto { get; set; }
 

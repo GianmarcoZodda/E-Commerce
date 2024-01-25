@@ -8,9 +8,14 @@
         public string Descripcion { get; set; }
         public double PrecioVigente { get; set; }
         public bool Activo { get; set; }
-        public int IdCategoria { get; set; }
+        public int CategoriaId { get; set; }
         public Categoria Categoria { get; set; }
         public string Imagen { get; set; }
+
+        public List<StockItem>? StockItems { get; set; }
+
+        public List<CarritoItem>? CarritoItems { get; set; }
+
 
     }
 }
