@@ -2,14 +2,24 @@
 {
     public class Persona
     {
+        public int Id { get; set; }
 
-        public String Username { get; set; }
+        public string UserName { get; set; }
 
-        public String Pasword { get; set; }
+        public string Password { get; set; }
 
-        public String Email { get; set; }   
+        public string Email { get; set; }   
 
-        public String FechaAlta { get; set; }
+        public DateTime FechaAlta { get; set; }
 
+        public string Nombre { get; set; }
+
+        public string Apellido { get; set; }
+
+        public int DNI { get; set; }
+
+        public int Telefono { get; set;}
+
+        public string Direccion { get; set; }
     }
 }
