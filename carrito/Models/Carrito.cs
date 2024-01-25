@@ -1,8 +1,13 @@
-﻿namespace carrito.Models
+﻿using carrito.Helpers;
+using System.ComponentModel.DataAnnotations;
+
+namespace carrito.Models
 {
     public class Carrito
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = ErrorMsgs.Required)]
         public bool Activo { get; set; }
 
         public int ClienteId { get; set; }
