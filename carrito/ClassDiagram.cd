@@ -1,7 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="carrito.Models.Carrito">
-    <Position X="6.25" Y="4" Width="1.5" />
+    <Position X="2.5" Y="4.5" Width="1.5" />
+    <AssociationLine Name="CarritoItems" Type="carrito.Models.CarritoItem" FixedFromPoint="true">
+      <Path>
+        <Point X="4" Y="5.562" />
+        <Point X="7.5" Y="5.562" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Compra" Type="carrito.Models.Compra" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4" Y="4.812" />
+        <Point X="5.945" Y="4.812" />
+        <Point X="5.945" Y="2.18" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAGAAAAAAAEAAAAABCAAAAAIAAAAAAgAAAEAAAAAAA=</HashCode>
       <FileName>Models\Carrito.cs</FileName>
@@ -15,7 +28,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="carrito.Models.CarritoItem">
-    <Position X="10.25" Y="2.5" Width="1.5" />
+    <Position X="7.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAACAAEAAAAEAAAARAAAAAAAAAAAAAIAAAAAIAAAAAA=</HashCode>
       <FileName>Models\CarritoItem.cs</FileName>
@@ -26,7 +39,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="carrito.Models.Categoria">
-    <Position X="4.75" Y="6.5" Width="1.5" />
+    <Position X="12.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAQAAAgAABAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Categoria.cs</FileName>
@@ -36,18 +49,25 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="carrito.Models.Cliente">
-    <Position X="2.75" Y="3.5" Width="1.5" />
+    <Position X="2.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACIAAAAAAAAA=</HashCode>
       <FileName>Models\Cliente.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
-      <Property Name="Carritos" />
       <Property Name="Compras" />
+      <Property Name="Carritos" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="carrito.Models.Compra">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Carrito" Type="carrito.Models.Carrito" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.453" Y="2.18" />
+        <Point X="6.453" Y="5" />
+        <Point X="4" Y="5" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>EAACAAAAAAAAAAAAABCAAAAAAAAAQAIAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Compra.cs</FileName>
@@ -58,42 +78,42 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="carrito.Models.Empleado">
-    <Position X="0.75" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Empleado.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="carrito.Models.ErrorViewModel" Collapsed="true">
-    <Position X="0.75" Y="6.75" Width="1.5" />
+  <Class Name="carrito.Models.ErrorViewModel">
+    <Position X="0.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\ErrorViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="carrito.Models.Persona">
-    <Position X="0.75" Y="2.5" Width="1.5" />
+  <Class Name="carrito.Models.Persona" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAACAAAAEEACAAgAAAAAEAAAACAQAAAgAAAAA=</HashCode>
       <FileName>Models\Persona.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="carrito.Models.Producto">
-    <Position X="10.25" Y="5.5" Width="1.5" />
+    <Position X="9" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAACAAAAggAAAAgAABIAAAABAgAAAAAAAAAEA=</HashCode>
+      <HashCode>AAACAAAAACAAAAAwAAAAgAABIgAAABAgAAAAAAAAAEA=</HashCode>
       <FileName>Models\Producto.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Categoria" />
+      <Property Name="StockItem" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="CarritoItems" />
-      <Property Name="StockItems" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="carrito.Models.StockItem">
-    <Position X="15" Y="6" Width="1.5" />
+    <Position X="11.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAEAAAAAAAAARAAAAAAAAAAAAAABAAAAAAAQAAA=</HashCode>
       <FileName>Models\StockItem.cs</FileName>
@@ -104,7 +124,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="carrito.Models.Sucursal">
-    <Position X="15.25" Y="1.5" Width="1.5" />
+    <Position X="11.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAACAAAAgAACAAgAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Models\Sucursal.cs</FileName>
