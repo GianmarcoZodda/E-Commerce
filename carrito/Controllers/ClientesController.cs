@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using carrito.Data;
 using carrito.Models;
+using carrito.ViewModels;
 
 namespace carrito.Controllers
 {
@@ -52,10 +53,28 @@ namespace carrito.Controllers
         // POST: Clientes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        //CREEADO POR SCAFFOLDING//
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Id,UserName,Password,Email,FechaAlta,Nombre,Apellido,DNI,Telefono,Direccion")] Cliente cliente)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(cliente);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(cliente);
+        //}
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserName,Password,Email,FechaAlta,Nombre,Apellido,DNI,Telefono,Direccion")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("Id,UserName,Password,Email,Nombre,Apellido,DNI,Telefono,Direccion")] Cliente cliente)
         {
+            cliente.FechaAlta = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _context.Add(cliente);
@@ -64,6 +83,8 @@ namespace carrito.Controllers
             }
             return View(cliente);
         }
+
+
 
         // GET: Clientes/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -84,25 +105,71 @@ namespace carrito.Controllers
         // POST: Clientes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Password,Email,FechaAlta,Nombre,Apellido,DNI,Telefono,Direccion")] Cliente cliente)
+        //{
+        //    if (id != cliente.Id)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(cliente);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!ClienteExists(cliente.Id))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(cliente);
+        //}
+
+
+        //MI EDIT//
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Password,Email,FechaAlta,Nombre,Apellido,DNI,Telefono,Direccion")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Telefono,Direccion")] ClienteEditVM ClienteEdit)
         {
-            if (id != cliente.Id)
+            if (id != ClienteEdit.Id)
             {
                 return NotFound();
             }
+
+            var ClienteEnDb = _context.Clientes.Find(id);
+
+            if (ClienteEnDb == null)
+            {
+                return NotFound(nameof(ClienteEnDb));
+            }
+
+            ClienteEnDb.Telefono = ClienteEdit.Telefono;
+            ClienteEnDb.Direccion = ClienteEdit.Direccion;
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(cliente);
+                    _context.Update(ClienteEnDb);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClienteExists(cliente.Id))
+                    if (!ClienteExists(ClienteEdit.Id))
                     {
                         return NotFound();
                     }
@@ -113,7 +180,7 @@ namespace carrito.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(cliente);
+            return View(ClienteEnDb);
         }
 
         // GET: Clientes/Delete/5

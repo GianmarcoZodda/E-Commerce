@@ -20,6 +20,7 @@ namespace carrito.Models
 
         [EmailAddress(ErrorMessage = ErrorMsgs.EmailInvalido)]
         [Required(ErrorMessage = ErrorMsgs.Required)]
+        [Display(Name = "Correo Electronico")]
         public string Email { get; set; }
 
         [Display(Name = "Fecha de Alta")]
