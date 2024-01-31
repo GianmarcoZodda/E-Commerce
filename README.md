@@ -184,7 +184,7 @@ Lo  primero debra ser comprender al detalle, que es lo que se espera y busca del
 
 **Empleado**
 - El empleado, puede listar las compras realizadas en el mes, en modo listado, ordenado de forma descendente por valor de compra.
-- Puede dar de alta otros empleados.
+- Puede dar de alta otros empleados. Solo ingresa datos Reelevantes, como Email, DNI, Apellido, el resto asignar valor por default para luego ser modificado por el ropio empleado.
 - Puede crear productos, categorias, Sucursales, agregar productos al stock de cada sucursal.
 - Puede habilitar y/o deshabilitar productos.
 
