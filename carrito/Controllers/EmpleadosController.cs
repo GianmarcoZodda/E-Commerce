@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using carrito.Data;
 using carrito.Models;
+using carrito.Helpers;
+using carrito.ViewModels;
 
 namespace carrito.Controllers
 {
@@ -54,10 +56,22 @@ namespace carrito.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserName,Password,Email,FechaAlta,Nombre,Apellido,DNI,Telefono,Direccion")] Empleado empleado)
+        public async Task<IActionResult> Create([Bind("Id,Email,Apellido,DNI")] EmpleadoCreateVM empCreateVM)
         {
+            Empleado empleado = new Empleado();
+
             if (ModelState.IsValid)
             {
+                empleado.UserName = empCreateVM.Email;
+                empleado.Password = GeneradorPassword.PasswordGenerator();
+                empleado.Email = empCreateVM.Email;
+                empleado.FechaAlta = DateTime.Now;
+                empleado.Apellido = empCreateVM.Apellido;
+                empleado.Nombre = "a completar";
+                empleado.Direccion = "a completar";
+                empleado.DNI = empCreateVM.DNI;
+
+
                 _context.Add(empleado);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,17 +100,28 @@ namespace carrito.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Password,Email,FechaAlta,Nombre,Apellido,DNI,Telefono,Direccion")] Empleado empleado)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Password,Nombre,Telefono,Direccion")] EmpleadoEditVM empEditVM)
         {
-            if (id != empleado.Id)
+            if (id != empEditVM.Id)
             {
                 return NotFound();
+            }
+
+            var empleado = await _context.Empleados.FindAsync(id);
+
+            if (empleado == null)
+            {
+                return NotFound(nameof(empleado));
             }
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    empleado.Password = empEditVM.Password;
+                    empleado.Nombre = empEditVM.Nombre;
+                    empleado.Telefono = empEditVM.Telefono;
+                    empleado.Direccion = empEditVM.Direccion;
                     _context.Update(empleado);
                     await _context.SaveChangesAsync();
                 }

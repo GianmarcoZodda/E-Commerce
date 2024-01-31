@@ -41,7 +41,7 @@ namespace carrito.Models
 
         [Required(ErrorMessage = ErrorMsgs.Required)]
         [Range(100000000, 99999999999, ErrorMessage = ErrorMsgs.MaxMin)]
-        public int Telefono { get; set;}
+        public int Telefono { get; set; } = 100000001;
 
         [Required(ErrorMessage = ErrorMsgs.Required)]
         [StringLength(100, MinimumLength = 5, ErrorMessage = ErrorMsgs.StrMinMax)]

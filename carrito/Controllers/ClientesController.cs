@@ -157,19 +157,18 @@ namespace carrito.Controllers
                 return NotFound(nameof(ClienteEnDb));
             }
 
-            ClienteEnDb.Telefono = ClienteEdit.Telefono;
-            ClienteEnDb.Direccion = ClienteEdit.Direccion;
-
             if (ModelState.IsValid)
             {
                 try
                 {
+                    ClienteEnDb.Telefono = ClienteEdit.Telefono;
+                    ClienteEnDb.Direccion = ClienteEdit.Direccion;
                     _context.Update(ClienteEnDb);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClienteExists(ClienteEdit.Id))
+                    if (!ClienteExists(ClienteEnDb.Id))
                     {
                         return NotFound();
                     }
