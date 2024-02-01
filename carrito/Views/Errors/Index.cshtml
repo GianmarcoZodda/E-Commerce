@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@if (ViewBag.Mensaje != null)
+{
+    <h2 class="text-secondary">@ViewBag.Mensaje</h2>
+}
+
+<div>
+    <a asp-controller="Productos" asp-action="Index">Volver atras</a> |
+    <a asp-controller="Home" asp-action="Index">Menu Pincipal</a>
+</div>
+

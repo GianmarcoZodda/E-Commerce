@@ -122,29 +122,48 @@ namespace carrito.Controllers
             return View(producto);
         }
 
+
+        //NO SE PUEDEN ELIMINAR PRODUCTOS, SOLO DESACTIVARLOS//
+
         // GET: Productos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Productos == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null || _context.Productos == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var producto = await _context.Productos
-                .Include(p => p.Categoria)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (producto == null)
-            {
-                return NotFound();
-            }
+        //    var producto = await _context.Productos
+        //        .Include(p => p.Categoria)
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (producto == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(producto);
-        }
+        //    return View(producto);
+        //}
 
         // POST: Productos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    if (_context.Productos == null)
+        //    {
+        //        return Problem("Entity set 'CarritoContext.Productos'  is null.");
+        //    }
+        //    var producto = await _context.Productos.FindAsync(id);
+        //    if (producto != null)
+        //    {
+        //        _context.Productos.Remove(producto);
+        //    }
+
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        public async Task<IActionResult> Desactivar(int id)
         {
             if (_context.Productos == null)
             {
@@ -153,12 +172,15 @@ namespace carrito.Controllers
             var producto = await _context.Productos.FindAsync(id);
             if (producto != null)
             {
-                _context.Productos.Remove(producto);
+                //_context.Productos.Remove(producto);
+                producto.Activo = false;
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
 
         private bool ProductoExists(int id)
         {

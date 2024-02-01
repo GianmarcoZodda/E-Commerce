@@ -1,4 +1,5 @@
-﻿using System;
+﻿ 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -146,7 +147,17 @@ namespace carrito.Controllers
             var sucursal = await _context.Sucursales.FindAsync(id);
             if (sucursal != null)
             {
-                _context.Sucursales.Remove(sucursal);
+                bool tieneProductos = sucursal.StockItems.Any();
+
+                if (!tieneProductos)
+                {
+                    _context.Sucursales.Remove(sucursal);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Error", new { mensaje = "no se puede eliminar la sucursal porque aun tiene productos" });
+                }
+                
             }
             
             await _context.SaveChangesAsync();
