@@ -7,8 +7,7 @@ namespace carrito.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = ErrorMsgs.Required)]
-        public bool Activo { get; set; }
+        public bool Activo { get; set; } = true;
 
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }

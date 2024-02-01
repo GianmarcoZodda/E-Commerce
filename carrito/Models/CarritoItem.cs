@@ -19,6 +19,7 @@ namespace carrito.Models
         public double ValorUnitario { get; set; }
 
         [Required(ErrorMessage = ErrorMsgs.Required)]
+        [Range(1, int.MaxValue, ErrorMessage = ErrorMsgs.MinVal)]
         public int Cantidad { get; set; }
 
         public double Subtotal { get; set; }

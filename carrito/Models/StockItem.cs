@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using carrito.Helpers;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace carrito.Models
 {
@@ -15,6 +17,8 @@ namespace carrito.Models
 
         public Producto Producto { get; set; }
 
+        [Required(ErrorMessage = ErrorMsgs.Required)]
+        [Range(0, int.MaxValue, ErrorMessage = ErrorMsgs.MinVal)]
         public int Cantidad { get; set; }
 
     }

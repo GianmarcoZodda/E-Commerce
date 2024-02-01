@@ -8,5 +8,6 @@ namespace carrito.Helpers
         public const string StrMinMax = "Debe estar comprendido entre {2} y {1}";
         public const string EmailInvalido = "El {0} es invalido";
         public const string MaxMin = "El valor debe ser menor que {2} y mayor que {1}";
+        public const string MinVal = "Debe indicar un valor mayor a {1}";
     }
 }
